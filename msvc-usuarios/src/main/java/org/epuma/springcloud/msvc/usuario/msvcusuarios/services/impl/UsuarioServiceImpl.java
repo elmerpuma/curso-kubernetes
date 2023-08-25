@@ -38,6 +38,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Optional<Usuario> porEmail(String email) {
-        return usuarioRepository.findByEmail(email);
+        // validacion por convencion
+       // return usuarioRepository.findByEmail(email);
+        //validacion con query
+        return usuarioRepository.porEmail(email);
+    }
+
+    @Override
+    public boolean existePorEmail(String email) {
+        return usuarioRepository.existsByEmail(email);
     }
 }
