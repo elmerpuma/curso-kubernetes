@@ -2,6 +2,7 @@ package org.epuma.springcloud.msvc.usuario.msvcusuarios.models.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 
 @Entity
@@ -10,12 +11,13 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty(message = "El campo debe ser vacio")
+    @NotEmpty(message = "No debe ser vacio")
     private String nombre;
     @NotEmpty
     @Email
     @Column(unique = true)
     private String email;
+    @NotEmpty
     private String password;
 
     public Long getId() {
