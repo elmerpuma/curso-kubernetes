@@ -48,4 +48,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     public boolean existePorEmail(String email) {
         return usuarioRepository.existsByEmail(email);
     }
+
+    @Override
+    public List<Usuario> listarPorId(Iterable<Long> ids) {
+        return (List<Usuario>) usuarioRepository.findAllById(ids);
+    }
 }
