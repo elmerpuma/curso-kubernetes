@@ -1,6 +1,6 @@
 package com.epuma.springingcloud.msvc.cursos.repositories;
 
-import com.epuma.springingcloud.msvc.cursos.entity.Curso;
+import com.epuma.springingcloud.msvc.cursos.models.entity.Curso;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
