@@ -1,5 +1,6 @@
 package org.epuma.springcloud.msvc.usuario.msvcusuarios.services.impl;
 
+import org.epuma.springcloud.msvc.usuario.msvcusuarios.clients.CursoClienteRest;
 import org.epuma.springcloud.msvc.usuario.msvcusuarios.models.entity.Usuario;
 import org.epuma.springcloud.msvc.usuario.msvcusuarios.repositories.UsuarioRepository;
 import org.epuma.springcloud.msvc.usuario.msvcusuarios.services.UsuarioService;
@@ -13,9 +14,10 @@ import java.util.Optional;
 public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private CursoClienteRest cursoClienteRest;
     @Transactional(readOnly = true)
     @Override
-
     public List<Usuario> listar() {
         return (List<Usuario>) usuarioRepository.findAll();
     }
@@ -33,6 +35,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public void eliminar(Long id) {
         usuarioRepository.deleteById(id);
+        cursoClienteRest.eliminarCursoUsuarioPorId(id);
 
     }
 

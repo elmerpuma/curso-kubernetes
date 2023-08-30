@@ -46,7 +46,7 @@ public class UsuarioController {
         //validacion email
 //        if (!usuario.getEmail().isEmpty()&&
 //                usuarioService.porEmail(usuario.getEmail()).isPresent()) {
-        if (!usuario.getEmail().isEmpty()&&
+        if (!usuario.getEmail().isEmpty() &&
                 usuarioService.existePorEmail(usuario.getEmail())) {
             return ResponseEntity.badRequest()
                     .body(Collections
@@ -66,15 +66,15 @@ public class UsuarioController {
         if (usuarioOptional.isPresent()) {
             Usuario usuarioDB = usuarioOptional.get();
             //validacion email
-            if (!usuario.getEmail().isEmpty()&&
-                    !usuario.getEmail().equalsIgnoreCase(usuarioDB.getEmail())&&
+            if (!usuario.getEmail().isEmpty() &&
+                    !usuario.getEmail().equalsIgnoreCase(usuarioDB.getEmail()) &&
                     usuarioService.porEmail(usuario.getEmail()).isPresent()) {
 
                 return ResponseEntity.badRequest()
                         .body(Collections
                                 .singletonMap("mensaje", "Ya existe un usuario con este Email"));
             }
-             //fin validacion email
+            //fin validacion email
             usuarioDB.setNombre(usuario.getNombre());
             usuarioDB.setEmail(usuario.getEmail());
             usuarioDB.setPassword(usuario.getPassword());
@@ -100,8 +100,9 @@ public class UsuarioController {
         });
         return ResponseEntity.badRequest().body(errores);
     }
+
     @GetMapping("/usuarios-por-curso")
-    public ResponseEntity<?> obtenerAlumnosPorCurso(@RequestParam List<Long> ids){
+    public ResponseEntity<?> obtenerAlumnosPorCurso(@RequestParam List<Long> ids) {
         return ResponseEntity.ok(usuarioService.listarPorId(ids));
     }
 }
