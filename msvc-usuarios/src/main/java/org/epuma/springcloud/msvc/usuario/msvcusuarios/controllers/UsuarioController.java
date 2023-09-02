@@ -17,9 +17,14 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping
-    public List<Usuario> listar() {
-        return usuarioService.listar();
+    public Map<String,List<Usuario>> listar() {
+
+        return Collections.singletonMap("usuarios",usuarioService.listar());
     }
+//    public List<Usuario> listar() {
+//
+//        return usuarioService.listar();
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> detalle(@PathVariable Long id) {
